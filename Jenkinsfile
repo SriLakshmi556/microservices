@@ -12,6 +12,7 @@ pipeline {
     stage('Submit Stack') {
       steps{
         script {
+	  sh 'aws --version'
           sh "aws cloudformation create-stack --stack-name demofatgate --template-file infrastructure/ecs.yml --region='us-east-1'"
         }
       }
@@ -21,7 +22,7 @@ pipeline {
     stage('Deploy to ECS Fargate') {
      steps{  
          script {
-			sh './deploy.sh us-east-1 demofargate'
+	    sh './deploy.sh us-east-1 demofargate'
          }
         }
       }   
