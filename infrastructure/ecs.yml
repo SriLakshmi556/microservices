@@ -254,7 +254,7 @@ Outputs:
     Description: The url at which the application is available
     Value: !GetAtt 'ECSALB.DNSName'
     Export:
-      Name: !Join [':', [!Ref "AWS::StackName", "ALBArn" ]]
+      Name: !Join [':', [!Ref "AWS::StackName", "Url" ]]
   ALBArn:
     Description: The ARN of the ALB, exported for later use in creating services
     Value: !Ref 'ECSALB'
