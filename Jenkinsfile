@@ -13,7 +13,7 @@ pipeline {
       steps{
         script {
 	  sh 'aws --version'
-          sh "aws cloudformation create-stack --stack-name demofatgate --template-file infrastructure/ecs.yml --region='us-east-1'"
+          sh 'aws cloudformation create-stack --stack-name demofatgate --template-file infrastructure/ecs.yml --region='us-east-1''
         }
       }
     }
