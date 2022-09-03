@@ -8,15 +8,24 @@ pipeline {
    
     stages {
        
-    // Deploy infra and microservices
+    // Deploy infra provision yaml file
     stage('Submit Stack') {
       steps{
         script {
 	  sh 'aws --version'
           sh 'aws cloudformation deploy --template-file infrastructure/ecs.yml --region us-east-1 --stack-name demofargate --capabilities CAPABILITY_NAMED_IAM'
-          sh './deploy.sh us-east-1 demofargate'
         }
       }
     }
-  }
+   
+    // Deploy microservices in Fargate
+    stage('Deploy to ECS Fargate') {
+     steps{  
+         script {
+	    sh './deploy.sh us-east-1 demofargate'
+         }
+        }
+      }   
+      
+    }
 }
