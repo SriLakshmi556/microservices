@@ -20,7 +20,8 @@ QUERY=$(cat <<-EOF
 	Stacks[0].Outputs[?OutputKey==\`ECSRole\`].OutputValue,
 	Stacks[0].Outputs[?OutputKey==\`Url\`].OutputValue,
 	Stacks[0].Outputs[?OutputKey==\`VPCId\`].OutputValue
-]EOF)
+]
+EOF)
 
 RESULTS=$(aws cloudformation describe-stacks \
 	--stack-name $STACK_NAME \
@@ -90,7 +91,8 @@ do
 				"hostPort": 0
 			}],
 			"essential": true
-		}]EOF)
+		}]
+EOF)
 
 	TASK_DEFINITION_ARN=`aws ecs register-task-definition \
 		--region $REGION \
@@ -170,7 +172,8 @@ do
 					"targetGroupArn": "$TARGET_GROUP_ARN",
 					"containerName": "$SERVICE_NAME",
 					"containerPort": 3000
-				}]EOF)
+				}]
+EOF)
 
 			RESULT=`aws ecs create-service \
 				--region $REGION \
