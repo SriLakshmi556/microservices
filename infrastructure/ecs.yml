@@ -252,7 +252,9 @@ Outputs:
       Name: !Join [':', [!Ref "AWS::StackName", "ClusterName" ]]
   Url:
     Description: The url at which the application is available
-    Value: !Join ['', [!GetAtt 'ECSALB.DNSName']]
+    Value: !GetAtt 'ECSALB.DNSName'
+    Export:
+      Name: !Join [':', [!Ref "AWS::StackName", "ALBArn" ]]
   ALBArn:
     Description: The ARN of the ALB, exported for later use in creating services
     Value: !Ref 'ECSALB'
